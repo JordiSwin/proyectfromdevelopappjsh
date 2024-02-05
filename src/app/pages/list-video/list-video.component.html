@@ -1,0 +1,35 @@
+<h3>Agregados: </h3>
+
+<div *ngIf="!contenidos.length">Aun no hay nada por aqui</div>
+
+<table *ngIf="contenidos.length" class="table">
+    <thead>
+        <tr>
+            <th>Registro </th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Calificación</th>
+            <th>Tipo de Contenido</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contenido of contenidos">
+        <td>{{contenido.id}}</td>
+        <td>{{contenido.nombre}}</td>
+        <td>{{contenido.descripcion}}</td>
+        <td>{{contenido.calificacion}}</td>
+        <td>{{contenido.tipoContenido}}</td>
+
+    </tr>
+    </tbody>
+
+</table>
+
+<br />
+<br>
+<div *ngIf="contenidos.length">
+    <strong>Formato</strong>
+    0:  No se eligio <br>
+    1:  Peliculas <br>
+    2: Serie <br>
+</div>

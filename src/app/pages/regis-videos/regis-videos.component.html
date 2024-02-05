@@ -1,0 +1,37 @@
+<h3>Agrega algo nuevo a tu lista</h3>
+
+<div class="col-sm-4">
+    <p>
+        <label for="">Titulo: </label>
+        <input type="text" class="form-control"[(ngModel)]="contenido.nombre"/>
+    </p>
+
+    <p>
+        <label for="">descripcion</label>
+        <input type="text" class="form-control"[(ngModel)]="contenido.descripcion"/>
+    </p>
+
+    <p>
+        <label for="calificacion">Calificación</label>
+        <input type="text" class="form-control" [(ngModel)]="contenido.calificacion" id="calificacion" disabled />
+        <button type="button" class="btn btn-secondary" (click)="disminuirCalificacion()">-</button>
+        <button type="button" class="btn btn-secondary" (click)="incrementarCalificacion()">+</button>
+        
+    </p>
+
+    <p>
+
+<label for="tipoContenido">Selecciona el formato:</label>
+<select [(ngModel)]="contenido.tipoContenido" class="form-control" id="tipoContenido">
+  <option *ngFor="let tipo of tipoContenido" [value]="tipo.id">
+    {{ tipo.formato }}
+  </option>
+</select>
+
+    </p>
+    <p>
+        <button type="button" class="btn btn-primary" (click)="this.insertarContenido()">Insertar</button>
+    </p>
+
+
+</div>
