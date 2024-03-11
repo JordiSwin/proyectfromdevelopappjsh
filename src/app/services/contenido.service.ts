@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Contenido } from '../models/contenido';
 import { tipoContenido } from '../models/tipo_contenido';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class ContenidoService {
   private contenido: Contenido[] = [];
   private tipocontenido: tipoContenido[] = [];
 
-  constructor() {
+  constructor(private firestore: AngularFirestore) {
     this.contenido = [];
     this.tipocontenido = [
       {
@@ -29,21 +31,29 @@ export class ContenidoService {
   }
 
   getContenido() {
-    return this.contenido;
+    return this.firestore.collection('contenidos').snapshotChanges();
   }
 
   getTiposcontenido() {
     return this.tipocontenido;
   }
 
-  AgregarContenido(contenido: Contenido) {
-    this.contenido.push(contenido);
+  agregarContenido(contenido: Contenido) {
+    return this.firestore.collection('contenidos').add(Object.assign({}, contenido));
   }
   
+   updateContenido(contenido: Contenido) {
+    this.firestore.doc('contenidos/' + contenido.id).update(contenido);
+  }
+
+  deleteContenido(contenidoId: string) {
+    this.firestore.doc('contenidos/' + contenidoId).delete();
+  }
+
 
   nuevoContenido(): Contenido {
     return {
-      id: this.contenido.length + 1,
+      id: '',
       nombre: '',
       descripcion: '',
       calificacion: 0,

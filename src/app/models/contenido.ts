@@ -1,12 +1,14 @@
 export class Contenido{
-    constructor(
-        public id:number,
-        public nombre:string,
-        public descripcion:string,
-        public calificacion:number,
-        public tipoContenido:number
+  
+         id!:string;
+         nombre!:string;
+         descripcion!:string;
+         calificacion:number;
+         tipoContenido!:number
 
-    ){
-
-    }
+  
+         constructor() {
+            this.calificacion = 0; // O cualquier otro valor inicial que desees
+          }
+  
 }

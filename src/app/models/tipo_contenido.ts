@@ -1,9 +1,8 @@
 export class tipoContenido{
 
-    constructor(
-        public id:number,
-        public formato:string,  //SI ES SERIE O PELICULA
-    ){
+         id!:number;
+         formato!:string;  //SI ES SERIE O PELICULA
+  
 
-    }
+
 }

@@ -3,12 +3,12 @@
 <div class="col-sm-4">
     <p>
         <label for="">Titulo: </label>
-        <input type="text" class="form-control"[(ngModel)]="contenido.nombre"/>
+        <input type="text" class="form-control"[(ngModel)]="contenido.nombre" id="nombreContenido" required/>
     </p>
 
     <p>
         <label for="">descripcion</label>
-        <input type="text" class="form-control"[(ngModel)]="contenido.descripcion"/>
+        <input type="text" class="form-control"[(ngModel)]="contenido.descripcion" id="descripcionContenido" required/>
     </p>
 
     <p>
@@ -22,7 +22,7 @@
     <p>
 
 <label for="tipoContenido">Selecciona el formato:</label>
-<select [(ngModel)]="contenido.tipoContenido" class="form-control" id="tipoContenido">
+<select [(ngModel)]="contenido.tipoContenido" class="form-control" id="tipoContenido" required>
   <option *ngFor="let tipo of tipoContenido" [value]="tipo.id">
     {{ tipo.formato }}
   </option>
@@ -30,8 +30,56 @@
 
     </p>
     <p>
-        <button type="button" class="btn btn-primary" (click)="this.insertarContenido()">Insertar</button>
+        <button type="button" class="btn btn-primary" (click)="insertarContenido()">Insertar</button>
     </p>
+    <td>
+        <button type="button" class="btn btn-warning" (click)="updateContenido()">Modificar</button>
+    </td>
+    <td>
+        <button type="button" class="btn btn-danger" (click)="deleteContenido(contenido.id)">Borrar</button>
+    </td>
+    
+
+
+    <h3>Agregados: </h3>
+
+<div *ngIf="!contenidos.length">Aun no hay nada por aqui</div>
+
+<table *ngIf="contenidos.length" class="table">
+    <thead>
+        <tr>
+          
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Calificación</th>
+            <th>Tipo de Contenido</th>
+            <th>Seleccionar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contenido of contenidos">
+        
+            <td>{{contenido.id}}</td>    
+        <td>{{contenido.nombre}}</td>
+        <td>{{contenido.descripcion}}</td>
+        <td>{{contenido.calificacion}}</td>
+        <td>{{contenido.tipoContenido}}</td>
+        <button type="button" class="btn btn-primary" (click)="selectContenido(contenido)">Seleccionar</button>
+
+    </tr>
+    </tbody>
+
+</table>
+
+<br />
+<br>
+<div *ngIf="contenidos.length">
+    <strong>Formato</strong>
+    0:  No se eligio <br>
+    1:  Peliculas <br>
+    2: Serie <br>
+</div>
 
 
 </div>
